@@ -9,3 +9,4 @@ sha256 = hashlib.sha256()
 sha256.update(string)
 string_hash = sha256.hexdigest()
 print(f"Hash:{string_hash}")
+# gives sha256 hash of the given string
