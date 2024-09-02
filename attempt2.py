@@ -94,7 +94,6 @@ def encoder(message):
 
 def decoder(encoded):
 	s = ''
-	# Calling the decrypting function decoding function
 	for num in encoded:
 		s += chr(decrypt(num))
 	return s
@@ -105,32 +104,58 @@ def decoder(encoded):
 
 def sha256():
 	 print(hashlib.algorithms_available)
-	 k = hashlib.sha256(b"hello bhai kya hal chal  gaswnhjaheifuea pho*jndcokfegfa???$%^")
-	 print(k.hexdigest())
+	 user_input = input("message for blake\n")
+	#  text = input("")
+	 user_input = user_input.encode(f"{user_input}")
+	 k = hashlib.sha256(f"{user_input}")
+	 l = k.hexdigest()
+	 print(l)
 	 print("----------------------------------------------------------------------------------------------------\n")
 	 blake = hashlib.blake2b()
-	 k = input("message for blake")
-	 blake.update(b'k')
-	#  print(hashlib.blake2b(k.hexdigest))
+	#  blake.update(b'k')
 
+# --------------------------------------------------------------
+
+# import hashlib
+
+def sha256_and_blake2b():
+    
+    user_input = input("Enter a message for SHA-256 and BLAKE2b:\n")
+    
+    sha256_hash = hashlib.sha256(user_input.encode('utf-8'))  
+    sha256_digest = sha256_hash.hexdigest()  # getting the hex-digest
+    print(f"SHA-256 hash: {sha256_digest}")
+    
+    print("----------------------------------------------------------------------------------------------------")
+    
+    # BLAKE2b hashing
+    blake2b_hash = hashlib.blake2b(user_input.encode('utf-8'))  
+    blake2b_digest = blake2b_hash.hexdigest()  # getting the hex-digest
+    print(f"BLAKE2b hash: {blake2b_digest}")
+
+# Call the function
+sha256_and_blake2b()
+
+# --------------------------------------------------------------
 
 if __name__ == '__main__':
 	primefiller()
 	setkeys()
+	print("\n")
 	sha256()
 	# predefined input down
 	# message = ""
-	message = input("Enter your message\n")
-	coded = encoder(message)
+	# message = input("Enter your message\n")
+	# coded = encoder(message)
 
-	print("Initial message:")
-	print(message)
-	print("\nThe encoded message : \n")
+	# print("Initial message:")
+	# print(message)
+	# print("\nThe encoded message : \n")
 	# print("\n")
-	print(''.join(str(p) for p in coded))
+	# print(''.join(str(p) for p in coded))
 	# to print the decoded message
-	print("\nThe decoded message : \n")
-	print(''.join(str(p) for p in decoder(coded)))
+	# print("\nThe decoded message : \n")
+	# print(''.join(str(p) for p in decoder(coded)))
 	
 	
 # 9e7a5ce504e78724d860b17f9f48186b5c234fcc347d5e305be4d7c204a61727
