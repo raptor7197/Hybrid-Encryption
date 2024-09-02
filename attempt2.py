@@ -104,10 +104,12 @@ def decoder(encoded):
 	return s
 
 
+
 if __name__ == '__main__':
 	primefiller()
 	setkeys()
 	# message = ""
+	print(hashlib.algorithms_avaliable)
 	message = input("Enter your message\n")
 	coded = encoder(message)
 
@@ -115,7 +117,8 @@ if __name__ == '__main__':
 	print(message)
 	print("\n\nThe encoded message : \n")
 	print(''.join(str(p) for p in coded))
-	print("\n\nThe decoded message : \n")
+	# to print the decoded message
+	# print("\n\nThe decoded message : \n")
 	print(''.join(str(p) for p in decoder(coded)))
 	
 	
