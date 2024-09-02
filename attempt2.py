@@ -52,7 +52,6 @@ def setkeys():
 			break
 		e += 1
 
-	# d = (k*Φ(n) + 1) / e for some integer k
 	public_key = e
 
 	d = 2
@@ -86,9 +85,6 @@ def decrypt(encrypted_text):
 	return decrypted
 
 
-# First converting each character to its ASCII value and
-# then encoding it then decoding the number to get the
-# ASCII and converting it to character
 def encoder(message):
 	encoded = []
 	for letter in message:
@@ -104,21 +100,38 @@ def decoder(encoded):
 	return s
 
 
+# {'sha3_512', 'blake2s', 'sha256', 'sha512', 'sha512_256', 'shake_256', 'md5', 'sha3_224', 'blake2b', 'sha384', 'sm3', 'sha3_256', 'sha3_384', 'sha1', 'shake_128', 'sha512_224', 'sha224', 'md5-sha1'}
+
+
+def sha256():
+	 print(hashlib.algorithms_available)
+	 k = hashlib.sha256(b"hello bhai kya hal chal  gaswnhjaheifuea pho*jndcokfegfa???$%^")
+	 print(k.hexdigest())
+	 print("----------------------------------------------------------------------------------------------------\n")
+	 blake = hashlib.blake2b()
+	 k = input("message for blake")
+	 blake.update(b'k')
+	#  print(hashlib.blake2b(k.hexdigest))
+
 
 if __name__ == '__main__':
 	primefiller()
 	setkeys()
+	sha256()
+	# predefined input down
 	# message = ""
-	print(hashlib.algorithms_avaliable)
 	message = input("Enter your message\n")
 	coded = encoder(message)
 
 	print("Initial message:")
 	print(message)
-	print("\n\nThe encoded message : \n")
+	print("\nThe encoded message : \n")
+	# print("\n")
 	print(''.join(str(p) for p in coded))
 	# to print the decoded message
-	# print("\n\nThe decoded message : \n")
+	print("\nThe decoded message : \n")
 	print(''.join(str(p) for p in decoder(coded)))
 	
 	
+# 9e7a5ce504e78724d860b17f9f48186b5c234fcc347d5e305be4d7c204a61727
+# ccfa7c21fa2122c45098bfa661ac0242907f83901aa6008ba645ae26b2f54f6d
