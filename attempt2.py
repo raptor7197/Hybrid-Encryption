@@ -102,16 +102,16 @@ def decoder(encoded):
 # {'sha3_512', 'blake2s', 'sha256', 'sha512', 'sha512_256', 'shake_256', 'md5', 'sha3_224', 'blake2b', 'sha384', 'sm3', 'sha3_256', 'sha3_384', 'sha1', 'shake_128', 'sha512_224', 'sha224', 'md5-sha1'}
 
 
-def sha256():
-	 print(hashlib.algorithms_available)
-	 user_input = input("message for blake\n")
-	#  text = input("")
-	 user_input = user_input.encode(f"{user_input}")
-	 k = hashlib.sha256(f"{user_input}")
-	 l = k.hexdigest()
-	 print(l)
-	 print("----------------------------------------------------------------------------------------------------\n")
-	 blake = hashlib.blake2b()
+# def sha256():
+# 	 print(hashlib.algorithms_available)
+# 	 user_input = input("message for blake\n")
+# 	#  text = input("")
+# 	 user_input = user_input.encode(f"{user_input}")
+# 	 k = hashlib.sha256(f"{user_input}")
+# 	 l = k.hexdigest()
+# 	 print(l)
+# 	 print("----------------------------------------------------------------------------------------------------\n")
+# 	 blake = hashlib.blake2b()
 	#  blake.update(b'k')
 
 # --------------------------------------------------------------
@@ -142,7 +142,7 @@ if __name__ == '__main__':
 	primefiller()
 	setkeys()
 	print("\n")
-	sha256()
+	# sha256()
 	# predefined input down
 	# message = ""
 	# message = input("Enter your message\n")
