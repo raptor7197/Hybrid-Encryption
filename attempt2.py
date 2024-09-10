@@ -3,6 +3,7 @@
 import hashlib
 import random
 import math
+from cryptography.fernet import Fernet 
 
  
 prime = set()
@@ -116,7 +117,6 @@ def sha256():
 
 # --------------------------------------------------------------
 
-# import hashlib
 
 def sha256_and_blake2b():
     
@@ -134,15 +134,33 @@ def sha256_and_blake2b():
     print(f"BLAKE2b hash: {blake2b_digest}")
 
 # Call the function
-sha256_and_blake2b()
+# sha256_and_blake2b()
+
+
+def encrypt():
+	key = Fernet.generate_key() 
+	print(key)
+	print("-------------------------------------------------\n")
+	f = Fernet(key) 
+	message = input("enter the message : \n")
+	token = f.encrypt(b'\n')
+	print(token[0:1])
+	print(token) 
+	d = f.decrypt(token) 
+	print(d.decode()) 
+
+
 
 # --------------------------------------------------------------
 
 if __name__ == '__main__':
+
 	# primefiller()
 	# setkeys()
-	print("\n")
+	# print("\n")
 	# sha256()
+	encrypt()
+	# sha256_and_blake2b()
 	# predefined input down
 	# message = ""
 	# message = input("Enter your message\n")
