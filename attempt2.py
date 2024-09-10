@@ -103,39 +103,19 @@ def decoder(encoded):
 # {'sha3_512', 'blake2s', 'sha256', 'sha512', 'sha512_256', 'shake_256', 'md5', 'sha3_224', 'blake2b', 'sha384', 'sm3', 'sha3_256', 'sha3_384', 'sha1', 'shake_128', 'sha512_224', 'sha224', 'md5-sha1'}
 
 
-def sha256():
-	 print(hashlib.algorithms_available)
-	 user_input = input("message for blake\n")
-	 text = input("")
-	 user_input = user_input.encode(f"{user_input}")
-	 k = hashlib.sha256(f"{user_input}")
-	 l = k.hexdigest()
-	 print(l)
-	 print("----------------------------------------------------------------------------------------------------\n")
-	 blake = hashlib.blake2b()
-	 blake.update(b'k')
+# def sha256():
+# 	 print(hashlib.algorithms_available)
+# 	 user_input = input("message for blake\n")
+# 	 text = input("")
+# 	 user_input = user_input.encode(f"{user_input}")
+# 	 k = hashlib.sha256(f"{user_input}")
+# 	 l = k.hexdigest()
+# 	 print(l)
+# 	 print("----------------------------------------------------------------------------------------------------\n")
+# 	 blake = hashlib.blake2b()
+# 	 blake.update(b'k')
 
 # --------------------------------------------------------------
-
-
-def sha256_and_blake2b():
-    
-    user_input = input("Enter a message for SHA-256 and BLAKE2b:\n")
-    
-    sha256_hash = hashlib.sha256(user_input.encode('utf-8'))  
-    sha256_digest = sha256_hash.hexdigest()  # getting the hex-digest
-    print(f"SHA-256 hash: {sha256_digest}")
-    print("\n")	
-    print("----------------------------------------------------------------------------------------------------")
-    print("\n")
-    # BLAKE2b hashing
-    blake2b_hash = hashlib.blake2b(user_input.encode('utf-8'))  
-    blake2b_digest = blake2b_hash.hexdigest()  # getting the hex-digest
-    print(f"BLAKE2b hash: {blake2b_digest}")
-
-# Call the function
-# sha256_and_blake2b()
-
 
 def encrypt():
 	key = Fernet.generate_key() 
@@ -143,11 +123,32 @@ def encrypt():
 	print("-------------------------------------------------\n")
 	f = Fernet(key) 
 	message = input("enter the message : \n")
-	token = f.encrypt(b'\n')
-	print(token[0:1])
+	token = f.encrypt(message.encode())
 	print(token) 
 	d = f.decrypt(token) 
 	print(d.decode()) 
+
+	print("-------------------------------------------------\n")
+
+	user_input = token
+    sha256_hash = hashlib.sha256(user_input.encode('utf-8')) 
+    sha256_digest = sha256_hash.hexdigest()
+    print(f"SHA-256 hash: {sha256_digest}")
+    print("\n")	
+    print("----------------------------------------------------------------------------------------------------")
+    print("\n")
+    blake2b_hash = hashlib.blake2b(user_input.encode('utf-8'))  
+    blake2b_digest = blake2b_hash.hexdigest()  
+    print(f"BLAKE2b hash: {blake2b_digest}")
+
+# def sha256_and_blake2b():
+    
+    # user_input = input("Enter a message for SHA-256 and BLAKE2b:\n")
+    
+
+# Call the function
+# sha256_and_blake2b()
+
 
 
 
