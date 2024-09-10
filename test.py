@@ -1,16 +1,23 @@
-#!/usr/bin/env python3
-import string 
-import random
 
-def main():
-    k = "Hello Worldhehe"
-    result = ""
-    for char in k:
-        if char.isalpha():
-            result += random.choice(string.ascii_letters)
-        else:
-            result += char
-        print(result)
 
-if __name__ == "__main__":
-    main()
+
+from cryptography.fernet import Fernet 
+  
+  
+key = Fernet.generate_key() 
+print(key)
+print("-------------------------------------------------\n")
+f = Fernet(key) 
+
+message = input("enter the message : \n")
+# token = f.encrypt(b"welcome to geeksforgeeks") 
+token = f.encrypt(b'message')
+
+print("-------------------------------------------------\n")
+
+  
+print(token) 
+  
+d = f.decrypt(token) 
+  
+print(d.decode()) 

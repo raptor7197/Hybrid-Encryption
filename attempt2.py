@@ -12,55 +12,55 @@ private_key = None
 n = None
 
 
-def primefiller():
+# def primefiller():
 	
-	seive = [True] * 250
-	seive[0] = False
-	seive[1] = False
-	for i in range(2, 250):
-		for j in range(i * 2, 250, i):
-			seive[j] = False
+# 	seive = [True] * 250
+# 	seive[0] = False
+# 	seive[1] = False
+# 	for i in range(2, 250):
+# 		for j in range(i * 2, 250, i):
+# 			seive[j] = False
 
-	# Filling the prime numbers
-	for i in range(len(seive)):
-		if seive[i]:
-			prime.add(i)
-
-
-def pickrandomprime():
-	global prime
-	k = random.randint(0, len(prime) - 1)
-	it = iter(prime)
-	for _ in range(k):
-		next(it)
-
-	ret = next(it)
-	prime.remove(ret)
-	return ret
+# 	# Filling the prime numbers
+# 	for i in range(len(seive)):
+# 		if seive[i]:
+# 			prime.add(i)
 
 
-def setkeys():
-	global public_key, private_key, n
-	prime1 = pickrandomprime() 
-	prime2 = pickrandomprime() 
-	n = prime1 * prime2
-	fi = (prime1 - 1) * (prime2 - 1)
+# def pickrandomprime():
+# 	global prime
+# 	k = random.randint(0, len(prime) - 1)
+# 	it = iter(prime)
+# 	for _ in range(k):
+# 		next(it)
 
-	e = 2
-	while True:
-		if math.gcd(e, fi) == 1:
-			break
-		e += 1
+# 	ret = next(it)
+# 	prime.remove(ret)
+# 	return ret
 
-	public_key = e
 
-	d = 2
-	while True:
-		if (d * e) % fi == 1:
-			break
-		d += 1
+# def setkeys():
+# 	global public_key, private_key, n
+# 	prime1 = pickrandomprime() 
+# 	prime2 = pickrandomprime() 
+# 	n = prime1 * prime2
+# 	fi = (prime1 - 1) * (prime2 - 1)
 
-	private_key = d
+# 	e = 2
+# 	while True:
+# 		if math.gcd(e, fi) == 1:
+# 			break
+# 		e += 1
+
+# 	public_key = e
+
+# 	d = 2
+# 	while True:
+# 		if (d * e) % fi == 1:
+# 			break
+# 		d += 1
+
+# 	private_key = d
 
 
 def encrypt(message):
@@ -102,17 +102,17 @@ def decoder(encoded):
 # {'sha3_512', 'blake2s', 'sha256', 'sha512', 'sha512_256', 'shake_256', 'md5', 'sha3_224', 'blake2b', 'sha384', 'sm3', 'sha3_256', 'sha3_384', 'sha1', 'shake_128', 'sha512_224', 'sha224', 'md5-sha1'}
 
 
-# def sha256():
-# 	 print(hashlib.algorithms_available)
-# 	 user_input = input("message for blake\n")
-# 	#  text = input("")
-# 	 user_input = user_input.encode(f"{user_input}")
-# 	 k = hashlib.sha256(f"{user_input}")
-# 	 l = k.hexdigest()
-# 	 print(l)
-# 	 print("----------------------------------------------------------------------------------------------------\n")
-# 	 blake = hashlib.blake2b()
-	#  blake.update(b'k')
+def sha256():
+	 print(hashlib.algorithms_available)
+	 user_input = input("message for blake\n")
+	 text = input("")
+	 user_input = user_input.encode(f"{user_input}")
+	 k = hashlib.sha256(f"{user_input}")
+	 l = k.hexdigest()
+	 print(l)
+	 print("----------------------------------------------------------------------------------------------------\n")
+	 blake = hashlib.blake2b()
+	 blake.update(b'k')
 
 # --------------------------------------------------------------
 
@@ -125,9 +125,9 @@ def sha256_and_blake2b():
     sha256_hash = hashlib.sha256(user_input.encode('utf-8'))  
     sha256_digest = sha256_hash.hexdigest()  # getting the hex-digest
     print(f"SHA-256 hash: {sha256_digest}")
-    
+    print("\n")	
     print("----------------------------------------------------------------------------------------------------")
-    
+    print("\n")
     # BLAKE2b hashing
     blake2b_hash = hashlib.blake2b(user_input.encode('utf-8'))  
     blake2b_digest = blake2b_hash.hexdigest()  # getting the hex-digest
@@ -139,8 +139,8 @@ sha256_and_blake2b()
 # --------------------------------------------------------------
 
 if __name__ == '__main__':
-	primefiller()
-	setkeys()
+	# primefiller()
+	# setkeys()
 	print("\n")
 	# sha256()
 	# predefined input down
