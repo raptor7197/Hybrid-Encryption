@@ -116,30 +116,39 @@ def decoder(encoded):
 # 	 blake.update(b'k')
 
 # --------------------------------------------------------------
+# import hashlib
+# from cryptography.fernet import Fernet
 
 def encrypt():
-	key = Fernet.generate_key() 
-	print(key)
-	print("-------------------------------------------------\n")
-	f = Fernet(key) 
-	message = input("enter the message : \n")
-	token = f.encrypt(message.encode())
-	print(token) 
-	d = f.decrypt(token) 
-	print(d.decode()) 
-
-	print("-------------------------------------------------\n")
-
-	user_input = token
-    sha256_hash = hashlib.sha256(user_input.encode('utf-8')) 
+    key = Fernet.generate_key() 
+    print(key)
+    print("-------------------------------------------------\n")
+    
+    f = Fernet(key) 
+    message = input("Enter the message: \n")
+    
+    token = f.encrypt(message.encode())
+    print(token) 
+    
+    d = f.decrypt(token) 
+    print(d.decode())
+    print("-------------------------------------------------\n")
+    
+    sha256_hash = hashlib.sha256(token)
     sha256_digest = sha256_hash.hexdigest()
     print(f"SHA-256 hash: {sha256_digest}")
-    print("\n")	
-    print("----------------------------------------------------------------------------------------------------")
-    print("\n")
-    blake2b_hash = hashlib.blake2b(user_input.encode('utf-8'))  
+    
+    # Uncomment the following lines if you want to use them
+    # print("\n")	
+    # print("----------------------------------------------------------------------------------------------------")
+    # print("\n")
+    
+    blake2b_hash = hashlib.blake2b(token)  # Use 'token' instead of 'user_input'
     blake2b_digest = blake2b_hash.hexdigest()  
     print(f"BLAKE2b hash: {blake2b_digest}")
+
+# Call the encrypt function to run the code
+# encrypt()
 
 # def sha256_and_blake2b():
     
