@@ -4,6 +4,7 @@ import hashlib
 import random
 import math
 from cryptography.fernet import Fernet 
+from Crypto
 
  
 prime = set()
@@ -116,18 +117,18 @@ def decoder(encoded):
 # 	 blake.update(b'k')
 
 # --------------------------------------------------------------
-# import hashlib
-# from cryptography.fernet import Fernet
 
-def encrypt():
-    key = Fernet.generate_key() 
-    print(key)
-    print("-------------------------------------------------\n")
+
+def double_hash():
+    # key = Fernet.generate_key() 
+    # print(key)
+	key = b'hbowEEfPOUblcMXR0opPhmW5bT1ZJzY7klohpElJz5M='
+    # print("-------------------------------------------------\n")
     
-    f = Fernet(key) 
-    message = input("Enter the message: \n")
+	f = Fernet(key)
+	message = input("Enter the message: \n")
     
-    token = f.encrypt(message.encode())
+    token = f.encrypt(message.encode())	
     print(token) 
     
     d = f.decrypt(token) 
@@ -158,8 +159,8 @@ def encrypt():
 # Call the function
 # sha256_and_blake2b()
 
-
-
+# BLAKE2b hash: ffd734e0a0b92dcfabb70192cfd2ff033aa666a4f0dcbf44791f3c6433ad6c0b16fa62a12d4cc07772e7b25ae8dd2d88af44c7ef143a529b982c1aebd16a1872
+# SHA-256 hash: d5a3669708dec2dd3f1bddd5b82747187a647803ef2183eeb6b1d71a561a01d7
 
 # --------------------------------------------------------------
 
@@ -168,8 +169,8 @@ if __name__ == '__main__':
 	# primefiller()
 	# setkeys()
 	# print("\n")
-	# sha256()
-	encrypt()
+	sha256()
+	double_hash()
 	# sha256_and_blake2b()
 	# predefined input down
 	# message = ""
