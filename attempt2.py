@@ -4,7 +4,7 @@ import hashlib
 import random
 import math
 from cryptography.fernet import Fernet 
-from Crypto
+# from Crypto
 
  
 prime = set()
@@ -118,35 +118,40 @@ def decoder(encoded):
 
 # --------------------------------------------------------------
 
+def rsa_private_key():
+	from cryptography.hazmat.primitives.asymmetric import rsa
+	private_key = rsa.generate_private_key(public_exponent=65537,key_size=4096,)
+	print(private_key)
 
-def double_hash():
-    # key = Fernet.generate_key() 
-    # print(key)
-	key = b'hbowEEfPOUblcMXR0opPhmW5bT1ZJzY7klohpElJz5M='
-    # print("-------------------------------------------------\n")
+
+# def double_hash():
+#     # key = Fernet.generate_key() 
+#     # print(key)
+# 	key = b'hbowEEfPOUblcMXR0opPhmW5bT1ZJzY7klohpElJz5M='
+#     # print("-------------------------------------------------\n")
     
-	f = Fernet(key)
-	message = input("Enter the message: \n")
+# 	f = Fernet(key)
+# 	message = input("Enter the message: \n")
     
-    token = f.encrypt(message.encode())	
-    print(token) 
+#     token = f.encrypt(message.encode())	
+#     print(token) 
     
-    d = f.decrypt(token) 
-    print(d.decode())
-    print("-------------------------------------------------\n")
+#     d = f.decrypt(token) 
+#     print(d.decode())
+#     print("-------------------------------------------------\n")
     
-    sha256_hash = hashlib.sha256(token)
-    sha256_digest = sha256_hash.hexdigest()
-    print(f"SHA-256 hash: {sha256_digest}")
+#     sha256_hash = hashlib.sha256(token)
+#     sha256_digest = sha256_hash.hexdigest()
+#     print(f"SHA-256 hash: {sha256_digest}")
     
     # Uncomment the following lines if you want to use them
     # print("\n")	
     # print("----------------------------------------------------------------------------------------------------")
     # print("\n")
     
-    blake2b_hash = hashlib.blake2b(token)  # Use 'token' instead of 'user_input'
-    blake2b_digest = blake2b_hash.hexdigest()  
-    print(f"BLAKE2b hash: {blake2b_digest}")
+    # blake2b_hash = hashlib.blake2b(token)  # Use 'token' instead of 'user_input'
+    # blake2b_digest = blake2b_hash.hexdigest()  
+    # print(f"BLAKE2b hash: {blake2b_digest}")
 
 # Call the encrypt function to run the code
 # encrypt()
@@ -169,8 +174,9 @@ if __name__ == '__main__':
 	# primefiller()
 	# setkeys()
 	# print("\n")
-	sha256()
-	double_hash()
+	# sha256()
+	# double_hash()
+	rsa_private_key()
 	# sha256_and_blake2b()
 	# predefined input down
 	# message = ""
