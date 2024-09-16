@@ -3,7 +3,7 @@ An attempt at Hybrid encryption which combines symmetric and asymmetric cryptogr
 
 # Yet To IMplement :
     Key Generation:
-Data Encryption:
-Key Encryption:
-Transmission:
-Decryption Process:
+    Data Encryption:
+    Key Encryption:
+    Transmission:
+    Decryption Process:
