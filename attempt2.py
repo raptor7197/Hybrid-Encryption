@@ -1,5 +1,4 @@
-#!/usr/bin/python3
-
+import rsa
 import hashlib
 import random
 import math
@@ -102,7 +101,18 @@ def decoder(encoded):
 
 
 # {'sha3_512', 'blake2s', 'sha256', 'sha512', 'sha512_256', 'shake_256', 'md5', 'sha3_224', 'blake2b', 'sha384', 'sm3', 'sha3_256', 'sha3_384', 'sha1', 'shake_128', 'sha512_224', 'sha224', 'md5-sha1'}
-
+def rsa_test():
+	(pubkey, privkey) = rsa.newkeys(512)
+	# with open('private.pem', mode='rb') as privatefile:
+    # keydata = privatefile.read()
+	message = 'hello Bob!'.encode('utf8')
+	privkey = rsa.PrivateKey.load_pkcs1("872hfudsbcysncvj")
+	(bob_pub, bob_priv) = rsa.newkeys(512)
+	crypto = rsa.encrypt(message, bob_pub)
+	print(message.decode('utf8'))
+	(pubkey, privkey) = rsa.newkeys(512)
+	message = 'Go left at the blue tree'.encode()
+	signature = rsa.sign(message, privkey, 'SHA-1')
 
 # def sha256():
 # 	 print(hashlib.algorithms_available)
@@ -172,6 +182,7 @@ def rsa_private_key():
 if __name__ == '__main__':
 
 	# primefiller()
+	rsa_test()
 	# setkeys()
 	# print("\n")
 	# sha256()
