@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import rsa
 import hashlib
 import random
@@ -101,18 +103,52 @@ def decoder(encoded):
 
 
 # {'sha3_512', 'blake2s', 'sha256', 'sha512', 'sha512_256', 'shake_256', 'md5', 'sha3_224', 'blake2b', 'sha384', 'sm3', 'sha3_256', 'sha3_384', 'sha1', 'shake_128', 'sha512_224', 'sha224', 'md5-sha1'}
-def rsa_test():
-	(pubkey, privkey) = rsa.newkeys(512)
-	# with open('private.pem', mode='rb') as privatefile:
-    # keydata = privatefile.read()
-	message = 'hello Bob!'.encode('utf8')
-	privkey = rsa.PrivateKey.load_pkcs1("872hfudsbcysncvj")
-	(bob_pub, bob_priv) = rsa.newkeys(512)
-	crypto = rsa.encrypt(message, bob_pub)
-	print(message.decode('utf8'))
-	(pubkey, privkey) = rsa.newkeys(512)
-	message = 'Go left at the blue tree'.encode()
-	signature = rsa.sign(message, privkey, 'SHA-1')
+# def rsa_test():
+	# (pubkey, privkey) = rsa.newkeys(512)
+	# (pubkey, privkey) = rsa.newkeys(2048, poolsize=15)
+	
+	# l = input("Enter Your message :")
+	# message = l.encode('utf8')
+	# print(message)
+	# crypto = rsa.encrypt(message, pubkey)	
+	# print(crypto)
+
+	# print("----------------------------------------------------------------------------------------------------\n")
+	# msg = 'hello this is a test message`'.encode()
+	# hash = rsa.compute_hash(msg, 'SHA-512')
+	# signature = rsa.sign(hash, privkey, 'SHA-512')
+	# rsa.verify(msg, signature, pubkey)
+
+	# output = rsa.decrypt(crypto, privkey)
+	# print(message.decode('utf8'))
+
+
+def rsa_example():
+    (pubkey, privkey) = rsa.newkeys(2048, poolsize=15)
+    l = input("Enter Your message: ")
+    message = l.encode('utf8')
+    print("Encoded Message:", message)
+    crypto = rsa.encrypt(message, pubkey)
+    print("Encrypted Message:", crypto)
+    print("----------------------------------------------------------------------------------------------------\n")
+    
+    msg = 'hello this is a test message'.encode()
+    hash_value = rsa.compute_hash(msg, 'SHA-512')
+    signature = rsa.sign(msg, privkey, 'SHA-512')
+    print("Signature:", signature)
+    
+    try:
+        rsa.verify(msg, signature, pubkey)
+        print("Signature is valid.")
+    except rsa.VerificationError:
+        print("Signature is invalid.")
+    
+    output = rsa.decrypt(crypto, privkey)
+    print("Decrypted Message:", output.decode('utf8'))
+
+# Call the function
+# rsa_example()
+	
 
 # def sha256():
 # 	 print(hashlib.algorithms_available)
@@ -182,7 +218,8 @@ def rsa_private_key():
 if __name__ == '__main__':
 
 	# primefiller()
-	rsa_test()
+	# rsa_test()
+	rsa_example()
 	# setkeys()
 	# print("\n")
 	# sha256()
