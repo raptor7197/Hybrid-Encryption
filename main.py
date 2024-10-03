@@ -6,6 +6,14 @@ import random
 import math
 from cryptography.fernet import Fernet 
 from aes import aes
+# from Crypto.Cipher import AES
+# from Crypto.Random import get_random_bytes
+# from Crypto.Util.Padding import pad, unpad
+
+import os
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.backends import default_backend
+
 # from Crypto
 
  
@@ -147,6 +155,60 @@ def rsa_example():
     output = rsa.decrypt(crypto, privkey)
     print("Decrypted Message:", output.decode('utf8'))
 
+
+def aes():
+    
+	print("AES")
+	print("----------------------------------------------------------------------------------------------------\n")
+	key = os.urandom(32)
+	print("Generated AES key:", key.hex())
+
+	backend = default_backend()
+	cipher = Cipher(algorithms.AES(key), modes.ECB(), backend=backend)
+
+	message = input("Enter the message to encrypt by aes: ").encode('utf-8')
+	print("Original message:", message.decode('utf-8'))
+
+	# Pad the message to be a multiple of 16 bytes (AES block size)
+	def pad(data):
+		padding_length = 16 - (len(data) % 16)
+		return data + bytes([padding_length] * padding_length)
+
+	padded_message = pad(message)
+	print("Padded message length:", len(padded_message), "bytes")
+
+	# Encrypt the message
+	encryptor = cipher.encryptor()
+	encrypted_message = encryptor.update(padded_message) + encryptor.finalize()
+	print("Encrypted message:", encrypted_message.hex())
+
+	# Decrypt the message
+	decryptor = cipher.decryptor()
+	decrypted_padded_message = decryptor.update(encrypted_message) + decryptor.finalize()
+
+	def unpad(data):
+		padding_length = data[-1]
+		return data[:-padding_length]
+
+	decrypted_message = unpad(decrypted_padded_message)
+	print("Decrypted message:", decrypted_message.decode('utf-8'))
+
+	print("\nExplanation:")
+	print("1. We use the cryptography library for AES encryption.")
+	print("2. A random 256-bit key is generated for AES-256 encryption.")
+	print("3. We create an AES cipher in ECB (Electronic Codebook) mode.")
+	print("4. The user's message is encoded to bytes and padded to fit AES block size.")
+	print("5. The padded message is encrypted using the AES cipher.")
+	print("6. For decryption, we use the same key and cipher to decrypt and unpad.")
+	print("Note: ECB mode is used for simplicity, but it's not recommended for secure applications.")
+	print("For better security, consider using modes like CBC or GCM with proper IV/nonce handling.")
+
+
+
+
+
+
+
 # Call the function
 # rsa_example()
 	
@@ -220,6 +282,7 @@ if __name__ == '__main__':
 
 	# primefiller()
 	# rsa_test()
+	aes()
 	rsa_example()
 	# setkeys()
 	# print("\n")
