@@ -133,27 +133,28 @@ def decoder(encoded):
 
 
 def rsa_example():
-    (pubkey, privkey) = rsa.newkeys(2048, poolsize=15)
-    l = input("Enter Your message: ")
-    message = l.encode('utf8')
-    print("Encoded Message:", message)
-    crypto = rsa.encrypt(message, pubkey)
-    print("Encrypted Message:", crypto)
-    print("----------------------------------------------------------------------------------------------------\n")
+	(pubkey, privkey) = rsa.newkeys(2048, poolsize=15)
+	print(privkey)
+	l = input("Enter Your message: ")
+	message = l.encode('utf8')
+	print("Encoded Message:", message)
+	crypto = rsa.encrypt(message, pubkey)
+	print("Encrypted Message:", crypto)
+	print("----------------------------------------------------------------------------------------------------\n")
     
-    msg = 'hello this is a test message'.encode()
-    hash_value = rsa.compute_hash(msg, 'SHA-512')
-    signature = rsa.sign(msg, privkey, 'SHA-512')
-    print("Signature:", signature)
+	msg = 'hello this is a test message'.encode()
+	hash_value = rsa.compute_hash(msg, 'SHA-512')
+	signature = rsa.sign(msg, privkey, 'SHA-512')
+	print("Signature:", signature)
     
-    try:
-        rsa.verify(msg, signature, pubkey)
-        print("Signature is valid.")
-    except rsa.VerificationError:
-        print("Signature is invalid.")
+	try:
+		rsa.verify(msg, signature, pubkey)
+		print("Signature is valid.")
+	except rsa.VerificationError:
+		print("Signature is invalid.")
     
-    output = rsa.decrypt(crypto, privkey)
-    print("Decrypted Message:", output.decode('utf8'))
+	output = rsa.decrypt(crypto, privkey)
+	print("Decrypted Message:", output.decode('utf8'))
 
 
 def aes():
