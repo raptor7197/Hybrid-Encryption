@@ -76,7 +76,7 @@ def aes():
 	key = os.urandom(32)
 	print("Generated AES key:", key.hex())
 
-	backend = default_backend()
+	backend = default_backend(1)
 	cipher = Cipher(algorithms.AES(key), modes.ECB(), backend=backend)
 
 	message = input("Enter the message to encrypt by AES: ").encode('utf-8')
@@ -97,7 +97,7 @@ def aes():
 	decryptor = cipher.decryptor()
 	decrypted_padded_message = decryptor.update(encrypted_message) + decryptor.finalize()
 
-	def unpad(data):
+	def unpad(data): 
 		padding_length = data[-1]
 		return data[:-padding_length]
 
