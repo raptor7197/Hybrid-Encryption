@@ -323,8 +323,7 @@ def main():
                 print("\n💡 No encrypted files found. Use encrypt.py to create some!")
         
         elif choice == '6':
-            print("\n👋 Thank you for using Hybrid Decryption System!")
-            print("🔒 Keep your private keys secure!")
+            print("")
             break
             
         else:
